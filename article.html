@@ -1,92 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title id="article-detail-title-tag">文章详情 - 敏感言论测试网站</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-zinc-50 text-zinc-800">
-
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-zinc-50 text-zinc-800">
     <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
-            <h1 class="text-4xl font-extrabold text-blue-700 tracking-tight">
-                <a href="index.html" class="hover:text-blue-800 transition-colors duration-200">敏感言论测试门户</a>
-            </h1>
-            <nav>
-                <a href="index.html" class="nav-link text-zinc-600 hover:text-blue-700 pb-2 transition-colors duration-200">返回文章列表</a>
-            </nav>
-        </div>
+      <div
+        class="container mx-auto px-6 py-5 flex justify-between items-center"
+      >
+        <h1 class="text-4xl font-extrabold text-blue-700 tracking-tight">
+          <a
+            href="index.html"
+            class="hover:text-blue-800 transition-colors duration-200"
+            >敏感言论测试门户</a
+          >
+        </h1>
+        <nav>
+          <a
+            href="index.html"
+            class="nav-link text-zinc-600 hover:text-blue-700 pb-2 transition-colors duration-200"
+            >返回文章列表</a
+          >
+        </nav>
+      </div>
     </header>
 
     <main class="container mx-auto px-6 py-10">
-        <div id="article-detail-view" class="bg-white p-8 rounded-xl shadow-lg border border-zinc-100">
-            <button id="back-button" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200 mb-6">
-                &larr; 返回文章列表
-            </button>
-            <h2 id="detail-title" class="text-4xl font-extrabold mb-6 text-zinc-900 leading-tight">加载中...</h2>
-            <img id="detail-image" src="" alt="文章图片" class="w-full h-80 object-cover mb-6 rounded-lg shadow-md">
-            <p class="text-sm text-zinc-500 mb-1">来源: <span id="detail-source" class="font-medium"></span></p>
-            <p class="text-xs text-zinc-400 mb-8">发布于: <span id="detail-date"></span></p>
-            <div id="detail-full-content" class="text-zinc-700 prose max-w-none leading-relaxed text-lg"></div>
-            <p id="article-not-found" class="text-red-500 text-center hidden text-2xl py-20">文章未找到。</p>
-        </div>
+      <div
+        id="article-detail-view"
+        class="bg-white p-8 rounded-xl shadow-lg border border-zinc-100"
+      >
+        <button
+          id="back-button"
+          class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200 mb-6"
+        >
+          &larr; 返回文章列表
+        </button>
+        <h2
+          id="detail-title"
+          class="text-4xl font-extrabold mb-6 text-zinc-900 leading-tight"
+        >
+          加载中...
+        </h2>
+        <img
+          id="detail-image"
+          src=""
+          alt="文章图片"
+          class="w-full h-80 object-cover mb-6 rounded-lg shadow-md"
+        />
+        <p class="text-sm text-zinc-500 mb-1">
+          来源: <span id="detail-source" class="font-medium"></span>
+        </p>
+        <p class="text-xs text-zinc-400 mb-8">
+          发布于: <span id="detail-date"></span>
+        </p>
+        <div
+          id="detail-full-content"
+          class="text-zinc-700 prose max-w-none leading-relaxed text-lg"
+        ></div>
+        <p
+          id="article-not-found"
+          class="text-red-500 text-center hidden text-2xl py-20"
+        >
+          文章未找到。
+        </p>
+      </div>
     </main>
 
     <footer class="bg-zinc-800 text-zinc-300 py-10 text-center">
-        <p class="text-sm">&copy; 2024 敏感言论测试平台。所有内容仅供测试用途。</p>
-        <p class="text-xs mt-2">开发者：前端测试团队</p>
+      <p class="text-sm">
+        &copy; 2024 敏感言论测试平台。所有内容仅供测试用途。
+      </p>
+      <p class="text-xs mt-2">开发者：前端测试团队</p>
     </footer>
 
-    <script src="data.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const articleId = params.get('id');
-
-            const detailTitle = document.getElementById('detail-title');
-            const detailImage = document.getElementById('detail-image');
-            const detailSource = document.getElementById('detail-source');
-            const detailDate = document.getElementById('detail-date');
-            const detailFullContent = document.getElementById('detail-full-content');
-            const articleNotFound = document.getElementById('article-not-found');
-            const documentTitleTag = document.getElementById('article-detail-title-tag');
-
-            if (articleId) {
-                const article = allArticles.find(a => a.id === articleId); // allArticles comes from data.js
-
-                if (article) {
-                    documentTitleTag.textContent = article.title + ' - 敏感言论测试网站';
-                    detailTitle.textContent = article.title;
-                    detailImage.src = article.imageUrl || 'https://placehold.co/600x400/E2E8F0/AAAAAA?text=新闻图片';
-                    detailImage.alt = article.title;
-                    detailImage.onerror = function() { this.src = 'https://placehold.co/600x400/E2E8F0/AAAAAA?text=图片加载失败'; };
-                    detailSource.textContent = article.source;
-                    detailDate.textContent = new Date(article.publishedAt).toLocaleDateString('zh-CN');
-                    detailFullContent.innerHTML = article.content;
-                    articleNotFound.classList.add('hidden');
-                } else {
-                    detailTitle.textContent = '文章未找到';
-                    detailImage.style.display = 'none'; // Hide image if article not found
-                    detailSource.textContent = '';
-                    detailDate.textContent = '';
-                    detailFullContent.innerHTML = '';
-                    articleNotFound.classList.remove('hidden');
-                }
-            } else {
-                detailTitle.textContent = '未指定文章ID';
-                detailImage.style.display = 'none';
-                detailSource.textContent = '';
-                detailDate.textContent = '';
-                detailFullContent.innerHTML = '';
-                articleNotFound.classList.remove('hidden');
-            }
-
-            document.getElementById('back-button').addEventListener('click', () => {
-                window.location.href = 'index.html';
-            });
-        });
-    </script>
-</body>
+    <script src="article-detail-script.js"></script>
+  </body>
 </html>

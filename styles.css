@@ -1,64 +1,71 @@
 /* General Body and Font Styles */
 body {
-    font-family: 'Inter', sans-serif; /* Tailwind default sans-serif is a good choice */
+  font-family: "Inter", sans-serif; /* Tailwind default sans-serif is a good choice */
 }
 
 /* Navigation Links */
 .nav-link.active {
-    font-weight: bold;
-    color: #1d4ed8; /* blue-700 */
-    border-bottom: 2px solid #1d4ed8;
+  font-weight: bold;
+  color: #1d4ed8; /* blue-700 */
+  border-bottom: 2px solid #1d4ed8;
 }
 
 /* Article Card Enhancements */
 .article-card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    display: block; /* Ensure it behaves like a block for full click area */
-    text-decoration: none; /* Remove underline for anchor tag */
-    color: inherit; /* Inherit text color */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: block; /* Ensure it behaves like a block for full click area */
+  text-decoration: none; /* Remove underline for anchor tag */
+  color: inherit; /* Inherit text color */
 }
 
 .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 /* Search Input Focus Styles */
 .search-input:focus {
-    outline: none;
-    border-color: #3b82f6; /* blue-500 */
-    box-shadow: 0 0 0 2px #60a5fa; /* blue-400 with opacity */
+  outline: none;
+  border-color: #3b82f6; /* blue-500 */
+  box-shadow: 0 0 0 2px #60a5fa; /* blue-400 with opacity */
 }
 
 /* Prose for rich text content (for detail page) */
 .prose img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
-.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    font-weight: bold;
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
 }
 
 .prose p {
-    margin-bottom: 1em;
-    line-height: 1.75;
+  margin-bottom: 1em;
+  line-height: 1.75;
 }
 
-.prose ul, .prose ol {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    padding-left: 1.5em;
+.prose ul,
+.prose ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
 }
 
 .prose li {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .prose strong {
-    font-weight: bold;
+  font-weight: bold;
 }
