@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const siteLogo = document.getElementById("site-logo");
   const noResultsP = document.getElementById("no-results");
 
-  let allArticles = []; // This will now be populated by fetching articles.json
+  let allArticles = [];
 
   // Helper to get query parameter from URL
   function getQueryParam(param) {
@@ -27,12 +27,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Error fetching all articles:", error);
       articlesContainer.innerHTML =
         "<p class='text-red-500 text-center col-span-full'>加载文章失败，请稍后再试。</p>";
-      allArticles = []; // Ensure allArticles is empty on error
+      allArticles = [];
     }
   }
 
   function renderArticles(articlesToRender) {
-    articlesContainer.innerHTML = ""; // Clear existing articles
+    articlesContainer.innerHTML = "";
     if (articlesToRender.length === 0) {
       noResultsP.classList.remove("hidden");
       return;
@@ -43,8 +43,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       const cardClone = articleCardTemplate.content.cloneNode(true);
       const anchorTag = cardClone.querySelector(".article-card");
 
-      // Set href for navigation to detail page
-      anchorTag.href = `article.html?id=${article.id}`;
+      // *** IMPORTANT CHANGE HERE ***
+      // Link to the pre-rendered HTML file in the 'articles' directory
+      anchorTag.href = `articles/article-${article.id}.html`;
 
       anchorTag.querySelector(".news-img").src =
         article.imageUrl ||
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function filterAndRenderArticles() {
     if (allArticles.length === 0) {
-      await fetchAllArticles(); // Ensure all articles are fetched before filtering
+      await fetchAllArticles();
     }
 
     const searchTerm = searchInput.value.toLowerCase().trim();
@@ -88,7 +89,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           article.title.toLowerCase().includes(searchTerm) ||
           article.description.toLowerCase().includes(searchTerm) ||
           article.content.toLowerCase().includes(searchTerm) ||
-          // sensitiveKeywords are still in data for backend testing, even if not displayed
           (article.sensitiveKeywords &&
             article.sensitiveKeywords.some((keyword) =>
               keyword.toLowerCase().includes(searchTerm)
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (params.toString()) {
       newUrl += `?${params.toString()}`;
     }
-    window.location.href = newUrl; // Full page reload with new query params
+    window.location.href = newUrl;
   });
 
   searchInput.addEventListener("keypress", (e) => {
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   siteLogo.addEventListener("click", () => {
     searchInput.value = "";
-    window.location.href = "index.html"; // Go to default list view
+    window.location.href = "index.html";
   });
 
   // Initial load logic for index.html
@@ -150,5 +150,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (initialSearchTerm) {
     searchInput.value = initialSearchTerm;
   }
-  filterAndRenderArticles(); // Render articles based on initial URL parameters
+  filterAndRenderArticles();
 });
